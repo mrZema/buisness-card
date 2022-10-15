@@ -13,6 +13,7 @@ AdminLteAsset::register($this);
 AppAsset::register($this);
 AssetBundle::register($this);
 
+$appName = Yii::$app->name ?? 'YiiApp';
 $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 ?>
 
@@ -41,11 +42,11 @@ $navbar = Yii::$app->user->isGuest ? 'navbar-guest' : 'navbar';
 
 <div class="wrapper">
     <!-- Navbar -->
-    <?= $this->render($navbar, ['assetDir' => $assetDir]) ?>
+    <?= $this->render($navbar, ['assetDir' => $assetDir, 'appName' => $appName]) ?>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <? if (!Yii::$app->user->isGuest) echo $this->render('sidebar', ['assetDir' => $assetDir]);?>
+    <? if (!Yii::$app->user->isGuest) echo $this->render('sidebar', ['assetDir' => $assetDir, 'appName' => $appName]);?>
 
     <!-- Content Wrapper. Contains page content -->
     <?= $content ?>
