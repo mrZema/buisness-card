@@ -1,12 +1,9 @@
 <?php
 
 use yii\helpers\Url;
-use hail812\adminlte3\widgets\Menu;
+use hail812\adminlte\widgets\Menu;
 
-/* @var $settings yii2mod\settings\components\Settings */
 
-$settings = Yii::$app->settings;
-$appName = $settings->get('FrontEnd', 'AppName') ?? 'YiiApp';
 ?>
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">

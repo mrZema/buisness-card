@@ -6,7 +6,7 @@ use Yii;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
-class Menu extends \hail812\adminlte3\widgets\Menu
+class Menu extends \hail812\adminlte\widgets\Menu
 {
     protected function renderItems($items): string
     {

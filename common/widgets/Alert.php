@@ -87,7 +87,7 @@ class Alert extends Widget
             }
 
             foreach ((array) $flash as $i => $message) {
-                echo \hail812\adminlte3\widgets\Alert::widget([
+                echo \hail812\adminlte\widgets\Alert::widget([
                     'body' => $message,
                     'type' => $type,
                     'title' => $params['title'] ?? 'Alert',
