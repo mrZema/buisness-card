@@ -36,7 +36,7 @@ return [
                 ],
                 'common\assets\AppAsset' => [
                     'css' => [
-                        'css/site_v.0.0.1.css'
+                        'css/site_v.0.0.2.css'
                     ]
                 ],
             ],
@@ -62,4 +62,5 @@ return [
             'class' => '\kartik\grid\Module'
         ],
     ],
+    'name' => 'Alex Che Demo',
 ];

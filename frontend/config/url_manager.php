@@ -9,6 +9,7 @@ return [
     'rules' => [
         '' => 'site/index',
         'contact' => 'site/contact',
+        'resume' => 'site/resume',
         'signup' => 'auth/signup/request',
         'signup/<_a:[\w-]+>' => 'auth/signup/<_a>',
         'reset' => 'auth/reset/request',

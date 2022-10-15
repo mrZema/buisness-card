@@ -25,6 +25,11 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionResume()
+    {
+        return $this->render('resume');
+    }
+
     public function actionContact()
     {
         $model = new ContactForm();

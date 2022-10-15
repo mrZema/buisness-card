@@ -1,53 +1,39 @@
 <?php
 
-$this->title = 'Starter Page';
+$this->title = 'Business-card';
 $this->params['breadcrumbs'] = [['label' => $this->title]];
 ?>
 
 <div class="container-fluid site-index">
+
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <h1>Business-card</h1>
+        <p class="lead">
+            This site is a demonstration web application! </br>
+            App based on advanced template of Yii2 Framework, </br>
+            which assembled with default dependency manager - Composer. </br>
+            Backend has built on MVC model with accordance OOP principles. </br>
+            Frontend has founded on bootstrap whereby app has responsive design </br>
+            and displays correctly on all device types. </br>
+            Code, written with me is supplied with documentation. </br>
+            App contains often used in real application demo elements:
+        </p>
+        <ul>
+            <li>Authentication and fast sign in through popular social networks</li>
+            <li>Mail service</li>
+            <li>Forms</li>
+            <li>API</li>
+            <li>CRUD elements</li>
+            <li>RBAC</li>
+            <li>ajax</li>
+        </ul>
+        <p class="lead">
+            App contains both backend and frontend panels.
+        </p>
+        <p class="lead">
+            You can review this application
+        </p>
+        <p><a class="btn btn-lg btn-success" href="https://github.com/mrZema/business-card">Review code on GitHub</a>
+        </p>
     </div>
-
-    <div class="row">
-        <div class="body-content">
-            <div class="row">
-                <div class="col-lg-4">
-                    <h2>Heading</h2>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur.</p>
-
-                    <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-                </div>
-                <div class="col-lg-4">
-                    <h2>Heading</h2>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur.</p>
-
-                    <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-                </div>
-                <div class="col-lg-4">
-                    <h2>Heading</h2>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur.</p>
-
-                    <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 

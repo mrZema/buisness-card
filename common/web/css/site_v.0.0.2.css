@@ -1,0 +1,11 @@
+div.required label:after {
+    content: " *";
+    color: red;
+}
+
+.vertical-line {
+    border-left: 3px solid;
+    position: relative;
+    left: 8px;
+    padding-left: 4px;
+}
