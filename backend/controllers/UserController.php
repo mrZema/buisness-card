@@ -14,6 +14,7 @@ use yii\web\NotFoundHttpException;
 use core\entities\rbac\DefaultRoles;
 use backend\forms\user\UserEditForm;
 use backend\forms\user\UserCreateForm;
+use core\entities\rbac\AppPermissions;
 use core\services\manage\UserManageService;
 
 /**
@@ -48,6 +49,16 @@ class UserController extends Controller
                         'allow' => true,
                         'actions' => [],
                         'roles' => [DefaultRoles::ADMIN],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['delete'],
+                        'roles' => [AppPermissions::OTHER_USER_DELETE],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => [AppPermissions::OTHER_USER_EDIT],
                     ],
                 ],
             ],
@@ -84,14 +95,14 @@ class UserController extends Controller
 
         $userEditForm = new UserEditForm($user);
         if ($userEditForm->load(Yii::$app->request->post()) && $userEditForm->validate()) {
-                try {
-                    $this->userManageService->edit($user->id, $userEditForm);
-                    Yii::$app->session->setFlash('kv-detail-success', 'User has been successfully edited.');
-                    return $this->redirect(['view', 'id' => $user->id]);
-                } catch (\RuntimeException $e) {
-                    Yii::$app->errorHandler->logException($e);
-                    Yii::$app->session->setFlash('error', $e->getMessage());
-                }
+            try {
+                $this->userManageService->edit($user->id, $userEditForm);
+                Yii::$app->session->setFlash('kv-detail-success', 'User has been successfully edited.');
+                return $this->redirect(['view', 'id' => $user->id]);
+            } catch (\RuntimeException $e) {
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
         }
 
         return $this->render('view', [

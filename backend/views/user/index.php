@@ -7,6 +7,7 @@ use kartik\date\DatePicker;
 use core\entities\auth\User;
 use core\helpers\UserHelper;
 use backend\widgets\grid\RoleColumn;
+use core\entities\rbac\AppPermissions;
 
 /* @var $this yii\web\View */
 /* @var $settings yii2mod\settings\components\Settings */
@@ -72,6 +73,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'class' => 'kartik\grid\ActionColumn',
+                        'visibleButtons' => [
+                            'update' => Yii::$app->user->can(AppPermissions::OTHER_USER_EDIT),
+                            'delete' => function ($model) {
+                                return Yii::$app->user->can(AppPermissions::OTHER_USER_DELETE);
+                            }
+                        ],
                         'urlCreator' => function ($action, $model) {
                             switch ($action) {
                                 case 'update': return 'view?id='.$model->id.'&mode=edit'; break;

@@ -10,11 +10,13 @@ class DefaultRoles
     const USER = 'User';
     const ADMIN = 'Admin';
     const DEV = 'Developer';
+    const OWNER = 'Owner';
 
     public static $default_roles = [
         self::USER,
         self::ADMIN,
-        self::DEV
+        self::DEV,
+        self::OWNER
     ];
 
     /**
