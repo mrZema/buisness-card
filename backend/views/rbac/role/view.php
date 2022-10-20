@@ -62,6 +62,7 @@ $buttons1 = $update_btn . $delete_btn . $back_btn;
                             'value' => implode(', ', $roleEditForm->permissions),
                             'format' => 'raw',
                             'type' => DetailView::INPUT_SELECT2,
+                            'hint' => '<i class="fas fa-info"></i> Permission will not be deleted from list in case if it\'ve been heritaged from parent.',
                             'widgetOptions' => [
                                 'data' => $roleEditForm->returnPermissionList(),
                                 'options' => ['value' => array_keys($roleEditForm->permissions), 'placeholder' => 'Select ...', 'multiple' => true],

@@ -94,4 +94,60 @@ class DetailView extends KartikDetailView
         }
         return $this->_form->field($model, $attr, $fieldConfig)->$input($options);
     }
+
+    /**
+     * Renders a single attribute item combination.
+     *
+     * @param array $attribute the specification of the attribute to be rendered.
+     *
+     * @return string the rendering result
+     * @throws InvalidConfigException
+     */
+    protected function renderAttributeItem($attribute)
+    {
+        $labelColOpts = ArrayHelper::getValue($attribute, 'labelColOptions', $this->labelColOptions);
+        $valueColOpts = ArrayHelper::getValue($attribute, 'valueColOptions', $this->valueColOptions);
+        if (ArrayHelper::getValue($attribute, 'group', false)) {
+            $groupOptions = ArrayHelper::getValue($attribute, 'groupOptions', []);
+            $label = ArrayHelper::getValue($attribute, 'label', '');
+            if (empty($groupOptions['colspan'])) {
+                $groupOptions['colspan'] = 2;
+            }
+            return Html::tag('th', $label, $groupOptions);
+        }
+        if ($this->hideIfEmpty === true && empty($attribute['value'])) {
+            Html::addCssClass($this->_rowOptions, 'kv-view-hidden');
+        }
+        if (ArrayHelper::getValue($attribute, 'type', 'text') === self::INPUT_HIDDEN) {
+            Html::addCssClass($this->_rowOptions, 'kv-edit-hidden');
+        }
+        /**
+         * issue #158 & enh #185
+         */
+        $value = $attribute['value'];
+
+        if ($this->arrayValueToString && is_array($attribute['value'])) {
+            $value = print_r($value, true);
+        }
+
+        if ($this->notSetIfEmpty && ($value === '' || $value === null)) {
+            $value = null;
+        }
+        $dispAttr = $this->formatter->format($value, $attribute['format']);
+        Html::addCssClass($this->viewAttributeContainer, 'kv-attribute');
+        Html::addCssClass($this->editAttributeContainer, 'kv-form-attribute');
+        $output = Html::tag('div', $dispAttr, $this->viewAttributeContainer) . "\n";
+        if ($this->enableEditMode) {
+            if (ArrayHelper::getValue($attribute, 'displayOnly', false)) {
+                $editInput = $dispAttr;
+            } else {
+                $editInput = $this->renderFormAttribute($attribute);
+                if ($hint = ArrayHelper::getValue($attribute, 'hint')) {
+                    $editInput = $editInput . Html::tag('div', $hint, []);
+                }
+            }
+            $output .= Html::tag('div', $editInput, $this->editAttributeContainer);
+        }
+        return Html::tag('th', $attribute['label'], $labelColOpts) . "\n" . Html::tag('td', $output, $valueColOpts);
+    }
 }
