@@ -2,20 +2,23 @@
 
 $this->title = 'Resume';
 $this->params['breadcrumbs'] = [['label' => $this->title]];
+
+$settings = Yii::$app->settings;
+$phoneNumber = $settings->get('FrontEnd', 'PhoneNumber') ?? 'PhoneNumber';
+$email = $settings->get('FrontEnd', 'Email') ?? 'Email';
 ?>
 
 <div class="container-fluid site-index">
-
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
                 <h2 class="m-2">Resume</h2>
             </div>
-            <div class="col-sm-4">
-                <button type="button" class="btn btn-success float-right m-2">
+            <div class="col-sm-4 d-print-none">
+                <button type="button" class="btn btn-success float-right m-2" onclick="window.print()">
                     <i class="fas fa-print"></i> Print
                 </button>
-                <button type="button" class="btn btn-info float-right m-2">
+                <button type="button" class="btn btn-info float-right m-2" onclick="">
                     <i class="fas fa-download"></i> Download
                 </button>
             </div>
@@ -35,8 +38,8 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                     </div>
                     <div class="vertical-line">
                         Location: Bangkok, Thailand</br>
-                        Phone: <a href="tel:+77786045257">+7 778 604 52 57</a></br>
-                        Email: <a href="mailto: chernyatyev@gmail.com">chernyatyev@gmail.com</a>
+                        Phone: <a href="tel:<?= $phoneNumber?>"><?= $phoneNumber?></a></br>
+                        Email: <a href="mailto: <?= $email?>"><?= $email?></a>
                     </div>
                 </div>
             </div>
@@ -121,7 +124,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                             <li>Enthusiastic and passionate</li>
                             <li>Self-organization</li>
                             <li>Team person</li>
-                            <li>Project management. Task decomposement understending, Business logic understanding. </li>
+                            <li>Project management. Task decomposement understending, Business logic understanding.</li>
                         </ul>
                     </div>
                 </div>

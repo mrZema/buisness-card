@@ -19,11 +19,16 @@ class m210301_054746_setting_section_table_addition extends Migration
             'name' => $this->string()->notNull(),
             'status' => $this->smallInteger()->notNull()->defaultValue(1),
             'description' => $this->string(),
-            'created_at' => $this->integer()->notNull(),
-            'updated_at' => $this->integer()->notNull(),
+            'created_at' => $this->integer()->notNull()->defaultValue(time()),
+            'updated_at' => $this->integer()->notNull()->defaultValue(time()),
         ], $tableOptions);
 
         $this->createIndex('{{%idx-setting_sections-name}}', $this->table_name, 'name', true);
+
+        $this->batchInsert($this->table_name, ['name', 'status', 'description'], [
+            ['FrontEnd', 10, 'Frontend settings of the site.'],
+            ['BackEnd', 10, 'Backend settings of the site.'],
+        ]);
     }
 
     public function safeDown()
