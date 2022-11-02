@@ -13,7 +13,10 @@ AdminLteAsset::register($this);
 AppAsset::register($this);
 AssetBundle::register($this);
 
-$appName = Yii::$app->name ?? 'YiiApp';
+$settings = Yii::$app->settings;
+$appName = $settings->get('FrontEnd', 'AppName') ?? 'YiiApp';
+$phoneNumber = $settings->get('FrontEnd', 'PhoneNumber') ?? 'PhoneNumber';
+$email = $settings->get('FrontEnd', 'Email') ?? 'Email';
 $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 ?>
 
@@ -57,7 +60,7 @@ $navbar = Yii::$app->user->isGuest ? 'navbar-guest' : 'navbar';
     <!-- /.control-sidebar -->
 
     <!-- Main Footer -->
-    <?= $this->render('footer') ?>
+    <?= $this->render('footer', ['phoneNumber' => $phoneNumber, 'email' => $email]) ?>
 </div>
 
 <?php $this->endBody() ?>

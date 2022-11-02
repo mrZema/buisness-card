@@ -2,8 +2,6 @@
 
 use yii\helpers\Url;
 use hail812\adminlte\widgets\Menu;
-
-
 ?>
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">

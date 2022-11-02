@@ -20,11 +20,12 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
         </p>
         <ul>
             <li>Authentication and fast sign in through popular social networks</li>
+            <li>Service layer used</li>
+            <li>Advanced refactored RBAC</li>
             <li>Mail service</li>
             <li>Forms</li>
             <li>API</li>
             <li>CRUD elements</li>
-            <li>RBAC</li>
             <li>ajax</li>
         </ul>
         <p class="lead">
