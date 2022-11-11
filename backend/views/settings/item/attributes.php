@@ -2,10 +2,13 @@
 
 use common\widgets\DetailView;
 use core\entities\settings\Section;
-use yii2mod\settings\models\enumerables\SettingType;
+use core\entities\settings\Setting;
+use core\entities\settings\SettingType;
 use yii2mod\settings\models\enumerables\SettingStatus;
 
-/* @var $setting yii2mod\settings\models\SettingModel */
+/* @var $setting Setting */
+
+$field_visibility = $setting->type ? true : false;
 
 return [
     [
@@ -20,7 +23,7 @@ return [
         ],
     ],
     [
-        'attribute' => 'key',
+        'attribute' => 'key'
     ],
     [
         'attribute' => 'type',
@@ -33,14 +36,23 @@ return [
             'pluginOptions' => ['allowClear' => true, 'width' => '100%'],
         ],
     ],
-    [
-        'attribute' => 'value',
-    ],
+    array_merge(
+        [
+            'attribute' => 'value',
+            'visible' => $field_visibility,
+            'value' => $setting->value,
+            'format' => 'raw',
+            'type' => SettingType::returnValueType($setting),
+        ],
+        SettingType::returnValueOptions($setting)
+    ),
     [
         'attribute' => 'description',
+        'visible' => $field_visibility,
     ],
     [
         'attribute' => 'status',
+        'visible' => $field_visibility,
         'value' => $setting->status,
         'format' => 'raw',
         'type' => DetailView::INPUT_SELECT2,

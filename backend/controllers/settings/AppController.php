@@ -2,14 +2,14 @@
 
 namespace backend\controllers\settings;
 
-use core\entities\rbac\AppPermissions;
 use Yii;
-use yii\helpers\Json;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
-use core\entities\settings\Item;
+use core\entities\settings\Setting;
+use core\entities\settings\Section;
+use core\entities\rbac\AppPermissions;
 use core\services\settings\SectionService;
 
 class AppController extends Controller
@@ -46,21 +46,25 @@ class AppController extends Controller
 
     public function actionIndex()
     {
+        /* @var $item Setting */
+        /* @var $section Section */
         $sections = $this->sectionService->findAllActive();
         $sections = ArrayHelper::index($sections, 'name');
 
         $post = Yii::$app->request->post();
 
         foreach ($sections as $section) {
-            foreach ($section->items as $item)
-            {
-                /* @var $item Item*/
+            foreach ($section->items as $item) {
                 if ($item->load($post, $item['section']) && $item->validate()) {
                     if (isset($post[$item['section']][$item['key']])) {
                         try {
-                            $item->setSetting($item['section'], $item['key'], $post[$item['section']][$item['key']]);
+                            $item->setSetting(
+                                $item['section'],
+                                $item['key'],
+                                $post[$item['section']][$item['key']],
+                                $item['type']);
                             Yii::$app->session->setFlash('success', 'Success Message');
-                            return $this->refresh('#'.strtolower($item['section']));
+                            return $this->refresh('#' . strtolower($item['section']));
                         } catch (\DomainException $e) {
                             Yii::$app->errorHandler->logException($e);
                             Yii::$app->session->setFlash('error', $e->getMessage());

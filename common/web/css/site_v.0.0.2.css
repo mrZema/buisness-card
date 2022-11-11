@@ -1,7 +1,7 @@
-div.required label:after {
+/* div.required label:after {
     content: " *";
     color: red;
-}
+}*/
 
 .vertical-line {
     border-left: 3px solid;

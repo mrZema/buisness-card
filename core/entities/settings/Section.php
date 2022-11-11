@@ -41,7 +41,7 @@ class Section extends ActiveRecord
 
     public function getItems()
     {
-        return $this->hasMany(Item::class, ['section' => 'name']);
+        return $this->hasMany(Setting::class, ['section' => 'name']);
     }
 
     public static function returnList(): array

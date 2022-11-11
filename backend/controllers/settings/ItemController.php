@@ -3,7 +3,6 @@
 namespace backend\controllers\settings;
 
 use Yii;
-use yii\db\Exception;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\web\Controller;
@@ -20,7 +19,7 @@ class ItemController extends Controller
     /**
      * @var string model class name for CRUD operations
      */
-    public $modelClass = 'yii2mod\settings\models\SettingModel';
+    public $modelClass = 'core\entities\settings\Setting';
 
     /**
      * Returns a list of behaviors that this component should behave as.
@@ -78,9 +77,9 @@ class ItemController extends Controller
      */
     public function actionCreate()
     {
-        $setting = Yii::createObject($this->modelClass);;
+        $setting = Yii::createObject($this->modelClass);
 
-        if ($setting->load(Yii::$app->request->post()) && $setting->save()) {
+        if ($setting->load(Yii::$app->request->post()) && !Yii::$app->request->isPjax && $setting->save()) {
             Yii::$app->session->setFlash('success', Yii::t('yii2mod.settings', 'Setting has been created.'));
 
             return $this->redirect(['view', 'id' => $setting->id]);
